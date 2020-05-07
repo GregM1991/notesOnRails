@@ -1,5 +1,8 @@
 class NotesController < ApplicationController
-  before_action :set_note, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
+  before_action :set_note, only: [:show]
+  before_action :set_user_listing, only: [:edit, :update, :destroy]
+
 
   # GET /notes
   # GET /notes.json
@@ -24,8 +27,8 @@ class NotesController < ApplicationController
   # POST /notes
   # POST /notes.json
   def create
-    @note = Note.new(note_params)
-
+    # @note = Note.new(note_params)
+    @note=current_user.notes.create(note_params)
     respond_to do |format|
       if @note.save
         format.html { redirect_to @note, notice: 'Note was successfully created.' }
@@ -71,4 +74,15 @@ class NotesController < ApplicationController
     def note_params
       params.require(:note).permit(:title, :body)
     end
+
+    def set_user_listing
+      id = params[:id]
+      @note = current_user.notes.find_by_id(id)
+  
+      if @note == nil
+          redirect_to notes_path
+      end
+  end
+
+
 end
