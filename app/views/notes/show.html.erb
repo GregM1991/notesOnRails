@@ -10,5 +10,11 @@
   <%= @note.body %>
 </p>
 
+<p>
+  <%= image_tag @note.picture if @note.picture.attached? %>
+</p>
+
+
+
 <%= link_to 'Edit', edit_note_path(@note) %> |
 <%= link_to 'Back', notes_path %>
