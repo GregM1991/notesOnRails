@@ -1,3 +1,25 @@
 // Place all the styles related to the Notes controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+.note-wrapper {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+	grid-gap: 30px;
+	width: 70%;
+	margin: auto;
+}
+
+.card {
+	background-color: #eee;
+	padding: 20px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	border-radius: 10px;
+}
+
+.buttons {
+	display: flex;
+	justify-content: space-evenly;
+	width: 100%;
+}
