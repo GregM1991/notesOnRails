@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @notebook.title %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @notebook.user_id %>
+</p>
+
+<p>
+  <strong>Note:</strong>
+  <ul>
+    <% for note in @notebook.notes %>
+      <ul><%= note.title %></ul>
+    <% end %>
+  </ul>
+ 
+</p>
+
+<%= link_to 'Edit', edit_notebook_path(@notebook) %> |
+<%= link_to 'Back', notebooks_path %>
