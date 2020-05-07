@@ -18,3 +18,31 @@
 
 <%= link_to 'Edit', edit_note_path(@note) %> |
 <%= link_to 'Back', notes_path %>
+
+
+
+<h1><%= @note.title %></h1>
+
+<h2>Description</h2>
+<p><%= @note.body %></p>
+
+<%# need the below code to show the donate button and then link it up with javascsript %>
+<button data-stripe="payment">
+  Donate <%= number_to_currency(5) %>
+</button>
+
+<script src="https://js.stripe.com/v3/"></script>
+
+<script>
+  document
+    .querySelector("[data-stripe='payment']")
+    .addEventListener("click", () => {
+      const stripe = Stripe(
+        "<%= Rails.application.credentials.dig(:stripe, :public_key) %>"
+      );
+
+      stripe.redirectToCheckout({
+        sessionId: "<%= @session_id %>"
+      });
+    });
+</script>
