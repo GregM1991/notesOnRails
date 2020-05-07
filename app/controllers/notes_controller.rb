@@ -29,8 +29,8 @@ class NotesController < ApplicationController
                 note_id: @note.id
             }
         },
-        success_url: "#{root_url}notes",
-        cancel_url: "#{root_url}notes"
+        success_url: "#{root_url}payments/success?userID=#{current_user.id}&noteId=#{@note.id}",
+        cancel_url: "#{root_url}"
     )
 
     @session_id = session.id

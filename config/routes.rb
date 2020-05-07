@@ -6,4 +6,7 @@ Rails.application.routes.draw do
 
   get "/", to:"notes#index" 
   root to:"notes#index" #had to define this so that the success/fail payment knows where to go
+  get "/payments/success", to:"payments#success"
+
+  post "/payments/webhook", to: "payments#webhook"
 end
