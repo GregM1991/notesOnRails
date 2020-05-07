@@ -13,6 +13,27 @@ class NotesController < ApplicationController
   # GET /notes/1
   # GET /notes/1.json
   def show
+    #this code in the show method is used to creatte the stripe session with all the relevant meta-data about the purchase
+    session = Stripe::Checkout::Session.create(
+        payment_method_types: ['card'],
+        customer_email: current_user.email,
+        line_items: [{
+            name: @note.title,
+            amount: 500, #this sets the price that will be charged
+            currency: 'aud',
+            quantity: 1,
+        }],
+        payment_intent_data: {
+            metadata: {
+                user_id: current_user.id,
+                note_id: @note.id
+            }
+        },
+        success_url: "#{root_url}notes",
+        cancel_url: "#{root_url}notes"
+    )
+
+    @session_id = session.id
   end
 
   # GET /notes/new
