@@ -13,6 +13,27 @@ class NotesController < ApplicationController
   # GET /notes/1
   # GET /notes/1.json
   def show
+    #this code in the show method is used to creatte the stripe session with all the relevant meta-data about the purchase
+    session = Stripe::Checkout::Session.create(
+        payment_method_types: ['card'],
+        customer_email: current_user.email,
+        line_items: [{
+            name: @note.title,
+            amount: 500, #this sets the price that will be charged
+            currency: 'aud',
+            quantity: 1,
+        }],
+        payment_intent_data: {
+            metadata: {
+                user_id: current_user.id,
+                note_id: @note.id
+            }
+        },
+        success_url: "#{root_url}payments/success?userID=#{current_user.id}&noteId=#{@note.id}",
+        cancel_url: "#{root_url}"
+    )
+
+    @session_id = session.id
   end
 
   # GET /notes/new
@@ -72,7 +93,7 @@ class NotesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def note_params
-      params.require(:note).permit(:title, :body)
+      params.require(:note).permit(:title, :body, :picture)
     end
 
     def set_user_listing

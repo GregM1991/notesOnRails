@@ -1,14 +1,39 @@
 <p id="notice"><%= notice %></p>
+  <%= link_to 'Back', notes_path %>
+    <%= link_to 'Edit', edit_note_path(@note) %>
+  <br>
+    <button data-stripe="payment">
+  Donate <%= number_to_currency(5) %>
+</button>
 
-<p>
-  <strong>Title:</strong>
-  <%= @note.title %>
-</p>
+<div class="showcontainer"> 
 
-<p>
-  <strong>Body:</strong>
-  <%= @note.body %>
-</p>
+  <h1><%= @note.title %></h1>
+  <hr>
+  <p>
+    <h2><%= @note.body %></h2>
+  </p>
+  <p>
+    <%= image_tag @note.picture if @note.picture.attached? %>
+  </p>
 
-<%= link_to 'Edit', edit_note_path(@note) %> |
-<%= link_to 'Back', notes_path %>
+</div>
+
+<%# need the below code to show the donate button and then link it up with javascsript %>
+
+
+<script src="https://js.stripe.com/v3/"></script>
+
+<script>
+  document
+    .querySelector("[data-stripe='payment']")
+    .addEventListener("click", () => {
+      const stripe = Stripe(
+        "<%= Rails.application.credentials.dig(:stripe, :public_key) %>"
+      );
+
+      stripe.redirectToCheckout({
+        sessionId: "<%= @session_id %>"
+      });
+    });
+</script>
