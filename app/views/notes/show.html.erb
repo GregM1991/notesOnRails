@@ -1,35 +1,26 @@
 <p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Title:</strong>
-  <%= @note.title %>
-</p>
-
-<p>
-  <strong>Body:</strong>
-  <%= @note.body %>
-</p>
-
-<p>
-  <%= image_tag @note.picture if @note.picture.attached? %>
-</p>
-
-
-
-<%= link_to 'Edit', edit_note_path(@note) %> |
-<%= link_to 'Back', notes_path %>
-
-
-
-<h1><%= @note.title %></h1>
-
-<h2>Description</h2>
-<p><%= @note.body %></p>
-
-<%# need the below code to show the donate button and then link it up with javascsript %>
-<button data-stripe="payment">
+  <%= link_to 'Back', notes_path %>
+    <%= link_to 'Edit', edit_note_path(@note) %>
+  <br>
+    <button data-stripe="payment">
   Donate <%= number_to_currency(5) %>
 </button>
+
+<div class="showcontainer"> 
+
+  <h1><%= @note.title %></h1>
+  <hr>
+  <p>
+    <h2><%= @note.body %></h2>
+  </p>
+  <p>
+    <%= image_tag @note.picture if @note.picture.attached? %>
+  </p>
+
+</div>
+
+<%# need the below code to show the donate button and then link it up with javascsript %>
+
 
 <script src="https://js.stripe.com/v3/"></script>
 
