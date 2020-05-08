@@ -13,6 +13,9 @@
  *= require_tree .
  *= require_self
  */
+
+ /* ------------ OVERALL STYLING ------------ */
+
 @import url('https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,900&display=swap');
 
 html {
@@ -21,7 +24,9 @@ html {
 
 body {
 	font-family: 'Nunito Sans', sans-serif;
-	color: rgb(35, 54, 75);
+	color: #fff;
+	background-color: #23364B; /* hex #23364B */
+	/* background-color: #AE937B; */
 }
 
 h1 {
@@ -36,38 +41,80 @@ h1 {
 
 a {
 	text-decoration: none;
-	color: rgb(35, 54, 75);
-	transition: .5s;
+	color: white;
 }
 
-a:hover {
-	color: rgb(67, 117, 170);
-	font-size: 110%;
+input, textarea, select {
+	outline: none;
+	padding: 5px 10px;
+	border: none;
+	transition: .4s;
+	color: #B000FF;
 }
 
-.wrapper {
+input:focus, textarea:focus, select:focus{
+	outline: none;
+	border: none;
+	background-color: #FF3794;
+	color: #00E896;
+	font-size: 16px;
+}
+
+.devise-alerts {
+	display: flex;
+	justify-content: center;
+	margin-top: 10px;
+}
+
+/* ------------ LOGIN STYLING ------------ */
+
+.login-wrapper {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	height: 60vh;
+	margin-top: 80px;
+	height: 400px;
 }
 
-.container {
+.login-wrapper h2 {
+	margin-top: 15px;
+}
+
+.login-container {
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	flex-direction: column;
-	background-color: #e0f0ff;
+	background-color: #6889a8;
 	width: 20%;
 	border-radius: 20px;
 	text-align: center;
 }
 
 div .field {
-	margin-bottom: 15px;
+	margin: 15px 0;
 	width: 100%;
 }
 
 label .input {
 	width: 100%;
+}
+
+/* ------------ NAV STYLING ------------ */
+
+nav {
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	background-color: #6889a8;
+	height: 80px;
+	width: 100%;
+	font-size: 1.4rem;
+}
+
+.button-container {
+	margin-right: 50px;
+	color: #fff;
+	font-size: 16px;
+	font-weight: 300;
 }

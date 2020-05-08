@@ -1,17 +1,18 @@
-<p id="notice"><%= notice %></p>
+<div class="formblock">
   <%= link_to 'Back', notes_path %>
     <%= link_to 'Edit', edit_note_path(@note) %>
   <br>
     <button data-stripe="payment">
   Donate <%= number_to_currency(5) %>
 </button>
+</div>
 
 <div class="showcontainer"> 
 
   <h1><%= @note.title %></h1>
   <hr>
   <p>
-    <h2><%= @note.body %></h2>
+    <h3><%= @note.body %></h3>
   </p>
   <p>
     <%= image_tag @note.picture if @note.picture.attached? %>

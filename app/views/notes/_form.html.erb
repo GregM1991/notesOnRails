@@ -1,4 +1,4 @@
-<div class="formcontainer">
+
 <%= form_with(model: note, local: true) do |form| %>
   <% if note.errors.any? %>
     <div id="error_explanation">
@@ -31,4 +31,3 @@
     <%= form.submit %>
   </div>
 <% end %>
-</div>

@@ -9,15 +9,18 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
-    <% if user_signed_in? %>
-    <%= link_to "logout", destroy_user_session_path, method: :delete %>
-<% else %>
-    <%= link_to "login", new_user_session_path %>
-<% end %>
-
+  <body>  
+    <nav>
+      <div class="button-container">
+        <% if user_signed_in? %>
+        <%= link_to "logout", destroy_user_session_path, method: :delete %>
+        <% end %> 
+      </div>
+    </nav>
+    <div class="devise-alerts">
       <p class="notice"><%= notice %></p>
-       <p class="alert"><%= alert %></p>
+      <p class="alert"><%= alert %></p>
+    </div>
     <%= yield %>
   </body>
 </html>

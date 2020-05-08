@@ -1,6 +1,11 @@
-<h1>Edit Note</h1>
+<div class="formblock">
+    <div class="formcontainer">
+        <h1>Edit Note</h1>
 
-<%= render 'form', note: @note %>
-
-<%= link_to 'Show', @note %> |
-<%= link_to 'Back', notes_path %>
+        <%= render 'form', note: @note %>
+        <div class="formblock-nav">
+            <%= link_to 'Show', @note %> |
+            <%= link_to 'Back', notes_path %>   
+        </div>
+    </div>
+</div>

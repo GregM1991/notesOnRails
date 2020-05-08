@@ -1,7 +1,6 @@
 class NotesController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_note, only: [:show]
-  before_action :set_user_listing, only: [:edit, :update, :destroy]
+  before_action :set_user_listing, only: [:show, :edit, :update, :destroy]
 
 
   # GET /notes
@@ -13,6 +12,7 @@ class NotesController < ApplicationController
   # GET /notes/1
   # GET /notes/1.json
   def show
+  
     #this code in the show method is used to creatte the stripe session with all the relevant meta-data about the purchase
     session = Stripe::Checkout::Session.create(
         payment_method_types: ['card'],
@@ -87,18 +87,13 @@ class NotesController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_note
-      @note = Note.find(params[:id])
-    end
-
     # Only allow a list of trusted parameters through.
     def note_params
       params.require(:note).permit(:title, :body, :picture)
     end
 
     def set_user_listing
-      id = params[:id]
-      @note = current_user.notes.find_by_id(id)
+      @note = current_user.notes.find_by_id(params[:id])
   
       if @note == nil
           redirect_to notes_path
