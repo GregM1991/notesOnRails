@@ -1,6 +1,11 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Notes</h1>
+
+  <div class="card">
+    <%= link_to 'New Note', new_note_path %>
+  </div>
+
 <div class="note-wrapper">
   <% current_user.notes.each do |note| %>
   <div class="card">
@@ -13,7 +18,5 @@
     </div>
   </div>
   <% end %>
-  <div class="card">
-    <%= link_to 'New Note', new_note_path %>
-  </div>
+
 </div>
