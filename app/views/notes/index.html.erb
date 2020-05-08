@@ -6,11 +6,11 @@
   <div class="card">
     <h1><%= note.title %></h1>
     <p><%= truncate(note.body, :length => 150, :separator => ' ') %></p>
-      <div class="buttons">
-        <%= link_to 'Show', note %>
-        <%= link_to 'Edit', edit_note_path(note) %>
-        <%= link_to 'Destroy', note, method: :delete, data: { confirm: 'Are you sure?' } %>
-      </div>
+    <div class="buttons">
+      <%= link_to 'Show', note %>
+      <%= link_to 'Edit', edit_note_path(note) %>
+      <%= link_to 'Destroy', note, method: :delete, data: { confirm: 'Are you sure?' } %>
+    </div>
   </div>
   <% end %>
   <div class="card">
